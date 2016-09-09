@@ -1,0 +1,35 @@
+#! /bin/bash
+
+SRC_DIR="/home/wcc/Source/"
+LIB_DIR="/home/wcc/Source/lib/"
+
+export WCC_LIB_PATH=${SRC_DIR}
+
+function trysubmit_c {
+	if make
+	then
+		./a.out
+	fi
+}
+
+function config_c_makefile {
+	echo "a.out: ${pid}.c" > Makefile
+	echo "	gcc -Wall -L${LIB_DIR} -Wl,-rpath=${LIB_DIR} -I${SRC_DIR} -lnumth ${pid}.c" >> Makefile
+}
+
+function config_c_alias {
+	alias vih="vi ${pid}.c"
+	alias vii="vi Inputs/${pid}"
+	alias th="trysubmit_c"
+	alias g0="sed -r '/^[ \t]*?\/\//d' $pid.c > 0000.c"
+}
+
+
+	
+
+pid=${1-0000}
+echo "Source File: ${pid}.c"
+config_c_makefile
+echo "Makefile generated."
+config_c_alias
+echo "command vih vii th g0 is ready."
