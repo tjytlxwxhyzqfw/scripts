@@ -1,0 +1,7 @@
+#! /bin/bash
+
+ROOT=~/Source
+TEST=${ROOT}/tests
+
+cd ${ROOT} && make
+cd ${TEST} && make
