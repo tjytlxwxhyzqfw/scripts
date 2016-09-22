@@ -1,0 +1,23 @@
+#! /bin/bash
+
+function config_py_makefile {
+	echo "all: ${pid}.py" > Makefile
+	echo "	python ${pid}.py" >> Makefile
+}
+
+function config_py_alias {
+	alias vih="vi ${pid}.py"
+	alias vii="vi Inputs/${pid}"
+	alias th="make"
+	alias g0="echo 'no g0 avaliable'"
+}
+
+
+	
+
+pid=${1-0000}
+echo "Source File: ${pid}.py"
+config_py_makefile
+echo "Makefile: ok"
+config_py_alias
+echo "Commands vih vii th: ok"

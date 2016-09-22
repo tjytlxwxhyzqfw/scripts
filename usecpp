@@ -1,0 +1,29 @@
+#! /bin/bash
+
+SRC_DIR=${WCC_LIB_PATH}
+LIB_DIR="${SRC_DIR}/lib/"
+
+function trysubmit_cpp {
+	if make
+	then
+		./a.out
+	fi
+}
+
+function config_cpp_makefile {
+	echo WCC_LLIB: $WCC_LLIB
+	echo "a.out: ${pid}.cpp" > Makefile
+	echo "	g++ -Wall -L${LIB_DIR} -Wl,-rpath=${LIB_DIR} -I${SRC_DIR} ${WCC_LLIB} ${pid}.cpp" >> Makefile
+}
+
+function config_cpp_alias {
+	alias vih="vi ${pid}.cpp"
+	alias vii="vi Inputs/${pid}"
+	alias th="trysubmit_cpp"
+	alias g0="sed -r '/^[ \t]*?\/\//d' $pid.c > 0000.cpp"
+}
+
+pid=${1-0000}
+echo "Source File: ${pid}.cpp"
+config_cpp_makefile
+config_cpp_alias

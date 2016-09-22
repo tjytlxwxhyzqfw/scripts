@@ -1,7 +1,9 @@
 #! /bin/bash
 
-ROOT=~/Source
+ROOT=${WCC_LIB_PATH}
 TEST=${ROOT}/tests
 
 cd ${ROOT} && make
-cd ${TEST} && make
+
+if [ ${1}x = 'test'x ];then cd ${TEST} && make;fi
+

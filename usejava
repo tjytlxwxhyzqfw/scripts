@@ -1,41 +1,5 @@
 #! /bin/bash
 
-function corjava {
-	val=$[ $RANDOM % 100]
-	echo $val
-	if [ $val -ge 60 ] 
-	then
-		echo "java"
-	else
-		echo "c"
-	fi
-}
-		
-function trysubmit_c {
-	if make
-	then
-		./a.out
-	fi
-}
-
-function config_c_makefile {
-	echo "a.out: ${pid}.c Source/wheels.c" > Makefile
-	echo "	gcc -ISource ${pid}.c" >> Makefile
-}
-
-function config_c_alias {
-	alias vih="vi ${pid}.c"
-	alias vii="vi Inputs/${pid}"
-	alias th="trysubmit_c"
-	alias g0="sed -r '/^[ \t]*?\/\//d' $pid.c > 0000.c"
-}
-
-function usec {
-	echo "Source File: ${pid}.c"
-	config_c_makefile
-	config_c_alias
-}
-
 function config_java_makefile {
 	echo "P${pid}.class: P${pid}.java" > Makefile
 	echo "	javac P${pid}.java" >> Makefile
@@ -63,12 +27,8 @@ function gMain {
 	rm .Main.java
 }
 
-function usejava {
-	echo "Source File: P${pid}.java"
-	config_java_makefile
-	config_java_alias
-}
-
 pid=${1-0000}
-usec
+echo "Source File: P${pid}.java"
+config_java_makefile
+config_java_alias
 
