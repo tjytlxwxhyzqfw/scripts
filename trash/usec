@@ -11,8 +11,9 @@ function trysubmit_c {
 }
 
 function config_c_makefile {
+	echo WCC_LLIB: ${WCC_LLIB}
 	echo "a.out: ${pid}.c" > Makefile
-	echo "	gcc -Wall -L${LIB_DIR} -Wl,-rpath=${LIB_DIR} -I${SRC_DIR} -lsegtree ${pid}.c" >> Makefile
+	echo "	gcc -Wall -L${LIB_DIR} -Wl,-rpath=${LIB_DIR} -I${SRC_DIR} $WCC_LLIB ${pid}.c" >> Makefile
 }
 
 function config_c_alias {

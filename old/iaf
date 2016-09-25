@@ -1,0 +1,29 @@
+#! /bin/python
+
+import os
+import sys
+
+def getcont(fname):
+	f = open(fname, "r")
+	out = f.read()
+	f.close()
+	return out
+
+
+if __name__ == "__main__":
+	affinity = "ff"
+	if len(sys.argv) == 2:
+		affinity = sys.argv[1]
+	
+	root = "/proc/irq"
+
+	dirs = filter(lambda x: os.path.isdir(os.path.join(root, x)), os.listdir(root))
+	print "%s"%dirs
+	for dirname in dirs:
+	#	if dirname == "2" or dirname == "0":
+			#continue
+		filename = os.path.join(root, dirname, "smp_affinity")
+		origin = getcont(filename)
+		os.system("echo %s > %s"%(affinity, filename))
+		result = getcont(filename)
+		print "%2s: %s -> %s"%(dirname, origin.strip(), result.strip())

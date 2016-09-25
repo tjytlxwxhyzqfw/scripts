@@ -1,9 +1,7 @@
 #! /bin/bash
 
-ROOT=${WCC_LIB_PATH}
-TEST=${ROOT}/tests
+cd ${WCC_LIBRARY_PATH}/c && make
+cd ${WCC_LIBRARY_PATH}/cpp && make
 
-cd ${ROOT} && make
-
-if [ ${1}x = 'test'x ];then cd ${TEST} && make;fi
+#if [ ${1}x = 'test'x ];then cd ${TEST} && make;fi
 

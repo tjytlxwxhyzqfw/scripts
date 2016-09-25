@@ -1,0 +1,17 @@
+LIB:=${WCC_LIBRARY_PATH}/<LANG>/lib
+ICL:=${WCC_LIBRARY_PATH}/<LANG>/include
+
+a.out: <NAME>
+	<COMPILE> -Wall -L$(LIB) -Wl,-rpath=$(LIB) -I$(ICL) <USEDLIB> <NAME>
+
+.PHONY: clean run asb
+
+asb:
+	source-assembler <LANG> <NAME>	
+
+run:
+	make && ./a.out
+
+clean:
+	rm a.out
+

@@ -1,0 +1,22 @@
+#! /bin/python
+
+import os
+import re
+import sys
+
+if __name__ == "__main__":
+	aff = "0-3"
+	if len(sys.argv) == 2:
+		aff = sys.argv[1]
+
+	print "aff: %s"%aff
+
+	root = "/proc"
+
+	files = os.listdir(root)
+	for filename in files:
+		try:
+			assert re.match("\d+", filename) and os.path.isdir(os.path.join(root, filename))
+			os.system("taskset -c -p %s %s"%(aff, filename))
+		except AssertionError:
+			pass

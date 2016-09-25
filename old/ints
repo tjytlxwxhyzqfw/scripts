@@ -1,0 +1,42 @@
+#! /bin/python
+
+import re
+import sys
+import time
+
+def getcpuis(irqpat):
+	total = [0 for i in range(4)]
+	f = open("/proc/interrupts", "r")
+	for line in f:
+		try:
+			irqid = line.split()[0].strip()
+			assert re.match(r"%s"%irqpat, irqid)
+			cpuis = [int(x) for x in line.split()[1:5]]
+			assert len(cpuis) == 4
+			total = [x + y for x, y in zip(cpuis, total)]
+		except ValueError:
+			pass
+		except AssertionError:
+			pass
+	f.close()
+	return total
+
+if __name__=="__main__":
+	irqpat = "."
+	if len(sys.argv) == 2:
+		irqpat = sys.argv[1]
+
+	print "irqpat: %s"%irqpat
+
+	total = [0 for i in range(4)]
+	last = getcpuis(irqpat)
+	while True:
+		current = getcpuis(irqpat)
+		delta = [y - x for x, y in zip(last, current)]
+		total = [x + y for x, y in zip(total, delta)]
+		infos = ["%9d(+%6d)"%(x, y) for  x, y in zip(total, delta)]
+		info = reduce(lambda x, y: "%s\t%s"%(x, y), infos)
+		print "%s\r"%info,
+		sys.stdout.flush()
+
+		last = current

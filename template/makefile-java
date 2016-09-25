@@ -1,0 +1,8 @@
+
+<STR>.class: <STR>.java
+	javac <STR>.java
+
+.PHONY: clean
+clean:
+	rm a.out
+
