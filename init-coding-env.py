@@ -23,7 +23,7 @@ def initenv(name, lang):
 	def cmakefile(clang):
 		template = fread("%s/template/makefile-c"%scripts)
 		template = template.replace("<NAME>", name).replace("<LANG>", clang).replace("<USEDLIB>", usedlib)
-		template = template.replace("<COMPILE>", "gcc" if clang == "c" else "g++");
+		template = template.replace("<COMPILE>", "gcc" if clang == "c" else "g++ -std=gnu++11");
 		fwrite("Makefile", template)
 
 	def pymakefile():
