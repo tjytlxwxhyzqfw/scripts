@@ -1,8 +1,11 @@
 
-<STR>.class: <STR>.java
-	javac <STR>.java
+<NAME>.class: <NAME>.java
+	javac <NAME>.java
 
-.PHONY: clean
+.PHONY: clean run
 clean:
 	rm a.out
 
+run:
+	make
+	java <NAME>

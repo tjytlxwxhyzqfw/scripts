@@ -4,7 +4,10 @@ ICL:=${WCC_LIBRARY_PATH}/<LANG>/include
 a.out: <NAME>
 	<COMPILE> -Wall -L$(LIB) -Wl,-rpath=$(LIB) -I$(ICL) <USEDLIB> <NAME>
 
-.PHONY: clean run asb
+.PHONY: clean run asb 0 create 
+
+create:
+	mv ${WCC_SCRIPTS_PATH}/template/template.lang <NAME>
 
 asb:
 	source-assembler <LANG> <NAME>	
@@ -14,4 +17,9 @@ run:
 
 clean:
 	rm a.out
+
+0:
+	<COMPILE> 0000.<LANG>
+
+
 

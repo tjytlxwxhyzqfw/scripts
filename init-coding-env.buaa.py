@@ -23,13 +23,8 @@ def initenv(name, lang):
 	def cmakefile(clang):
 		template = fread("%s/template/makefile-c"%scripts)
 		template = template.replace("<NAME>", name).replace("<LANG>", clang).replace("<USEDLIB>", usedlib)
-		template = template.replace("<COMPILE>", "gcc" if clang == "c" else "g++ -std=gnu++11");
+		template = template.replace("<COMPILE>", "gcc" if clang == "c" else "g++");
 		fwrite("Makefile", template)
-
-	def cpptemplate():
-		template = fread("%s/template/template.cpp"%scripts)
-		template = template.replace("<NAME>", name.split(".")[0])
-		fwrite("%s/template/template.lang"%scripts, template)
 
 	def pymakefile():
 		template = fread("%s/template/makefile-py"%scripts)
@@ -48,7 +43,6 @@ def initenv(name, lang):
 	if lang == "cpp" or lang == "c++":
 		name += ".cpp"
 		cmakefile("cpp")
-		cpptemplate()
 	if lang == "py" or lang == "python":
 		name += ".py"
 		pymakefile()
