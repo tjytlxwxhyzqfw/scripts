@@ -1,5 +1,9 @@
 /**
+<<<<<<< HEAD
  * C
+=======
+ * 1114
+>>>>>>> 384d53ca354b075d475743533f04ff3fafb14c49
  */
 
 #include <algorithm>
@@ -13,7 +17,11 @@ using namespace std;
 
 int main(void)
 {
+<<<<<<< HEAD
 	freopen("Inputs/C", "r", stdin);
+=======
+	freopen("Inputs/1114", "r", stdin);
+>>>>>>> 384d53ca354b075d475743533f04ff3fafb14c49
 	setbuf(stdout, NULL);
 
 	return 0;
