@@ -1,3 +1,10 @@
-.PHONY: all
+.PHONY: all clean st
+
 all: <NAME>
 	python <NAME>
+
+create:
+	mv ${WCC_SCRIPTS_PATH}/template/template.lang <NAME>
+
+st:
+	simple-test "python <NAME>" Inputs/`echo <NAME> | cut -d. -f1`

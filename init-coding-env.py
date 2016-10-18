@@ -36,6 +36,10 @@ def initenv(name, lang):
 		template = template.replace("<NAME>", name)
 		fwrite("Makefile", template)
 
+	def pytemplate():
+		template = fread("%s/template/template.py"%scripts)
+		fwrite("%s/template/template.lang"%scripts, template)
+
 	def javamakefile():
 		base_name = name.split(".")[0]
 		template = fread("%s/template/makefile-java"%scripts)
@@ -52,6 +56,7 @@ def initenv(name, lang):
 	if lang == "py" or lang == "python":
 		name += ".py"
 		pymakefile()
+		pytemplate()
 	if lang == "java" or lang == "j":
 		name += ".java"
 		javamakefile()

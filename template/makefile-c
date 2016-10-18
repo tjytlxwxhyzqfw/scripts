@@ -17,6 +17,8 @@ run:
 
 clean:
 	rm a.out
+	rm 0000.<LANG>
+	rm Makefile
 
 0:
 	<COMPILE> 0000.<LANG>
