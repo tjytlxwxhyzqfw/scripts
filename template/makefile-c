@@ -4,7 +4,7 @@ ICL:=${WCC_LIBRARY_PATH}/<LANG>/include
 a.out: <NAME>
 	<COMPILE> -Wall -L$(LIB) -Wl,-rpath=$(LIB) -I$(ICL) <USEDLIB> <NAME>
 
-.PHONY: clean run asb 0 create 
+.PHONY: clean run asb 0 create lint
 
 create:
 	mv ${WCC_SCRIPTS_PATH}/template/template.lang <NAME>
@@ -22,6 +22,9 @@ clean:
 
 0:
 	<COMPILE> 0000.<LANG>
+
+lint:
+	cpplint --filter=-whitespace/tab,-legal/copyright,-build/include,-build/namespaces <NAME>
 
 
 
