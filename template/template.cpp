@@ -11,8 +11,7 @@
 
 using namespace std;
 
-int main(void)
-{
+int main(void) {
 	freopen("Inputs/<NAME>", "r", stdin);
 	setbuf(stdout, NULL);
 
