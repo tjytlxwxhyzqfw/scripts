@@ -1,4 +1,4 @@
 cd ${WCC_LIBRARY_PATH} && git pull origin master
 cd $cfd && git pull origin master
 cd $hdojd && git pull origin master
-cd ${WCC_LIBRARY_PATH} && git pull origin master
+cd ${WCC_SCRIPTS_PATH} && echo "" > share/sourcename && git pull origin master
