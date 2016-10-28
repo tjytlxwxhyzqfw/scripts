@@ -28,10 +28,15 @@ class Case(object):
 			i += size+1
 
 def test(cmd, path):
+	tid = 0
 	case = Case(path)
 	for string in case.nxt():
+		print "\nTest #%d:"%tid
+		print "---[input]---"
 		print string
+		print "---[output]---"
 		os.system("echo '%s' | %s"%(string, cmd))
+		tid += 1
 
 if __name__ == "__main__":
 	cmd, path = sys.argv[1:3]
